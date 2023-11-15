@@ -16,9 +16,26 @@ function App() {
     setTasks([...tasks, newTask]);
   };
 
-  //todo: función para borrar una tarea habiendo recibido el id
-  const handleDeleteTask = (id) => {
-    //borrar una tarea que coincida con el id
+
+
+  // función para borrar una tarea habiendo recibido el id
+  const handleDelete = (id) => {
+    const remainingTasks = tasks.filter(t => t.id !== id);
+    setTasks([...remainingTasks]);
+  };
+
+  //función que cambia el valor de isCompleted (una tarea puede pasar de 
+  // pendiente a competada )
+
+  const handleChangeStatus = (id) => {
+    const modifiedTasks = tasks.map(t =>
+      t.id === id ?
+        { ...t, isCompleted: !t.isCompleted }
+        :
+        t
+    );
+    setTasks([...modifiedTasks]);
+
   };
 
 
@@ -27,7 +44,10 @@ function App() {
       <h1>Lista de Tareas</h1>
 
       <Input onAddTask={(description) => handleAddTask(description)} />
-      <TaskList tasks={tasks} />
+      <TaskList
+        onDeleteTask={(id) => handleDelete(id)} tasks={tasks}
+        onChangeStatus={(id) => handleChangeStatus(id)}
+      />
     </>
   );
 }
