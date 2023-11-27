@@ -1,6 +1,4 @@
-
-import { IoTrashBin } from "react-icons/io5";
-import { IoIosCloseCircle } from "react-icons/io";
+import Task from "./Task";
 function TaskList({ tasks, onDeleteTask, onChangeStatus }) {
 
   return (
@@ -12,22 +10,7 @@ function TaskList({ tasks, onDeleteTask, onChangeStatus }) {
         <th>marcar</th>
       </thead>
       <tbody>
-        {tasks.map(t => <tr key={t.id}
-          className={t.isCompleted ? "completed" : null}
-        >
-          <td>
-            {t.id.slice(-5)}
-          </td>
-          <td>
-            {t.description}
-          </td>
-          <td>
-            <IoTrashBin size={20} color={'red'} className="icons" onClick={() => onDeleteTask(t.id)} />
-          </td>
-          <td>
-            <IoIosCloseCircle className="icons" size={20} color="blue" onClick={() => onChangeStatus(t.id)} />
-          </td>
-        </tr>)}
+        {tasks.map(t => <Task key={t.id} task={t} />)}
       </tbody>
     </table>
 
