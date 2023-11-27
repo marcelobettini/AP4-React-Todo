@@ -10,7 +10,7 @@ function TaskList({ tasks, onDeleteTask, onChangeStatus }) {
         <th>marcar</th>
       </thead>
       <tbody>
-        {tasks.map(t => <Task key={t.id} task={t} />)}
+        {tasks.map(t => <Task key={t.id} task={t} onDeleteTask={onDeleteTask} onChangeStatus={onChangeStatus} />)}
       </tbody>
     </table>
 

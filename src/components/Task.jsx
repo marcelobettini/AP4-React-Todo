@@ -1,7 +1,7 @@
 import { IoTrashBin } from "react-icons/io5";
 import { IoIosCloseCircle } from "react-icons/io";
 
-function Task({ task }) {
+function Task({ task, onDeleteTask, onChangeStatus }) {
   return (
     <tr
       className={task.isCompleted ? "completed" : null}
