@@ -1,9 +1,19 @@
-function Input({ onAddTask }) {
+import { useContext } from "react";
+import { AppCtx } from "../context";
+
+function Input() {
+  const { tasks, setTasks, filteredTasks, setFilteredTasks } = useContext(AppCtx);
   const handleSubmit = (e) => {
     e.preventDefault();
     const todoForm = new FormData(e.target);
     const description = todoForm.get('description');
-    onAddTask(description);
+    const newTask = {
+      id: self.crypto.randomUUID(),
+      description: description,
+      isCompleted: false
+    };
+    setTasks([...tasks, newTask]);
+    setFilteredTasks([...filteredTasks, newTask]);
     e.target.reset();
 
   };

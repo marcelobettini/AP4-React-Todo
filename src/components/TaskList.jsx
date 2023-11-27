@@ -1,16 +1,23 @@
+import { useEffect, useContext } from "react";
 import Task from "./Task";
-function TaskList({ tasks, onDeleteTask, onChangeStatus }) {
-
+import { AppCtx } from '../context';
+function TaskList() {
+  const { tasks, filteredTasks } = useContext(AppCtx);
+  useEffect(() => {
+    window.localStorage.setItem("tasks", JSON.stringify(tasks));
+  }, [tasks]);
   return (
     <table>
       <thead>
-        <th>id</th>
-        <th>descripción</th>
-        <th>borrar</th>
-        <th>marcar</th>
+        <tr>
+          <th>id</th>
+          <th>descripción</th>
+          <th>borrar</th>
+          <th>marcar</th>
+        </tr>
       </thead>
       <tbody>
-        {tasks.map(t => <Task key={t.id} task={t} onDeleteTask={onDeleteTask} onChangeStatus={onChangeStatus} />)}
+        {filteredTasks.map(t => <Task key={t.id} task={t} />)}
       </tbody>
     </table>
 
